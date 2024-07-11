@@ -1,6 +1,7 @@
 package com.example.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 /**
  * This is a class that models a Message.
@@ -20,12 +21,14 @@ public class Message {
      * The id for the user who has posted this message. We will assume that this is provided by the front-end of this
      * application.
      */
-    @Column (name="postedBy")
+    @Column (name="postedBy")   
     private Integer postedBy;
     /**
      * The text for this message- eg "this is my first post!". Must be not blank and under 255 characters
      */
-    @Column (name="messageText")
+   // @Column (name="messageText", nullable = false, length = 10)
+    @NotNull (message = "Message Text should not be null/Blank")
+    @NotBlank(message = "Message Text should not be null/Blank")    
     private String messageText;
     /**
      * The epoch time when this tweet was posted (number of seconds since Jan 1, 1970). Longs are large enough
